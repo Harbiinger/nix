@@ -1,24 +1,30 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, pkgs-unstable, lib, ... }:
 
 {
+
+  imports = [
+    /home/theo/GitHub/nix/nixos/myModules/waybar.nix
+    /home/theo/GitHub/nix/nixos/myModules/hyprlock.nix
+  ];
+
   home.username = "theo";
   home.homeDirectory = "/home/theo";
-  home.stateVersion = "23.05";
+  home.stateVersion = "23.11";
   home.pointerCursor = {
     gtk.enable = true;
     package = pkgs.banana-cursor;
     name = "Banana";
     size = 24;
   };
+
   home.sessionVariables = {
     EDITOR="nvim";
   };
 
-  programs.waybar = {
-    enable = true;
-    #package = pkgs.waybar.overrideAttrs (oldAttrs: {
-    #  mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-    #}); 
+  xdg.mimeApps.defaultApplications = {
+    "text/plain" = ["nvim.desktop"];
+    "application/pdf" = ["librewolf.desktop"];
+    "video/*" = ["mpv.desktop"];
   };
 
   programs.vim = {

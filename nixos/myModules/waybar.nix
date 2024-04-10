@@ -1,0 +1,263 @@
+{
+  programs.waybar = {
+    enable = true;
+
+    settings = {
+
+      myBar = {
+
+        layer = "top";
+        position = "top";
+        height = 0;
+
+        modules-left = [
+          "hyprland/workspaces"
+          "tray"
+          "mpd"
+        ];
+
+        modules-center = [
+          "clock"
+        ];
+
+        modules-right = [
+          "pulseaudio"
+          "cpu"
+          "memory"
+          "network"
+          "battery"
+          "custom/powermenu"
+        ];
+
+        "tray" = {
+          icon-size = 13;
+          spacing = 10;
+        };
+
+        "backlight" = {
+          device = "intel_backlight";
+          format = "{icon} {percent}";
+          format-icons = ["" "" ""];
+          on-scroll-up = "brightnessctl set +5%";
+          on-scroll-down = "brightnessctl set 5%-";
+          min-length = 6;
+        };
+
+        "battery" = {
+          format-charging = "{capacity}%"; 
+          format = "{capacity}%";
+        };
+
+        "hyprland/workspaces" = {
+          disable-scroll = true;
+          all-outputs = true;
+          on-click = true;
+        };
+
+        "clock" = {
+          format = "{: %R   %d/%m}";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+        };
+
+        "network" = {
+          format-wifi = " 直 {essid}";
+          format-ethernet = "  {ipaddr}";
+          format-disconnected = " 睊 Disconnected";
+          tooltip-format-wifi = "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}";
+        };
+
+        "pulseaudio" = {
+          format = "{icon} {volume}%";
+          format-muted = " 🔇  Muted";
+          scroll-step = 1;
+          format-icons = {
+            headphone = "";
+            hands-free = "";
+            headset = "";
+            default = ["" "" "墳" ""];
+            };
+        };
+
+        "cpu" = {
+          interval = 10;
+          format = " 󰻠 {}%";
+        };
+
+        "memory" = {
+          interval = 10;
+          format = "  {}%";
+        };
+
+        "custom/powermenu" = {
+          format = "  ";
+          on-click = "eww open menu --toggle";
+        };
+
+        "mpd" = {
+          format = "   {title} {stateIcon}";
+          format-stopped = "  ";
+          format-disconnected = " 󰚦 ";
+          state-icons = {
+            paused = "  ";
+            playing = "  ";
+          };
+        };
+      };
+    };
+
+    style = ''
+* {
+    border: none;
+    border-radius: 0;
+    font-family: JetBrains Mono Bold;
+    font-weight: bold;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(21, 18, 27, 0);
+    color: #cdd6f4;
+}
+
+tooltip {
+    background: #1e1e2e;
+    border-radius: 10;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #42A5F5;
+}
+
+#workspaces button {
+    padding: 5px;
+    color: #1565C0;
+    margin-right: 5px;
+}
+
+#workspaces button.active {
+    color: #42A5F5;
+}
+
+#workspaces button.focused {
+    color: #a6adc8;
+}
+
+#workspaces button.urgent {
+    color: #11111b;
+}
+
+#workspaces button:hover {
+    color: #cdd6f4;
+}
+
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#workspaces,
+#tray,
+#cpu,
+#temperature,
+#memory,
+#custom-powermenu,
+#mpd {
+    background: #222431;
+    color: #42A5F5;
+    padding: 0px 10px;
+    margin: 3px 0px;
+    margin-top: 0px;
+    border: 2px solid transparent;
+    /* border tuning : 
+    background: linear-gradient(to left, #222431, #222431) padding-box, linear-gradient(to top, rgba(51, 204, 255, 0.93), rgba(0, 255, 153, 0.93)) border-box;
+    */
+    border-radius: 50em;
+    border-top: 0px;
+}
+
+#tray {
+    border-radius: 0px 0px 0px 0px;
+    margin-left: 0px;
+    padding-right: 5px;
+    padding-left: 5px;
+    border-left: 0px;
+}
+
+#mpd {
+    border-radius: 0px 0px 10px 0px;
+    margin-left: 0px;
+    padding-right: 5px;
+    padding-left: 5px;
+    border-left: 0px;
+}
+
+#workspaces {
+    border-radius: 0px 0px 0px 0px;
+    margin-left: 0px;
+    padding-right: 0px;
+    padding-left: 5px;
+    border-left: 0px;
+    border-right:0px;
+}
+
+#cpu {
+    border-radius: 0px;
+    margin-left: 0px;
+    padding-left: 5px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#memory {
+    border-radius: 0px;
+    margin-left: 0px;
+    padding-left: 5px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#temperature {
+    border-radius: 0px;
+    margin-left: 0px;
+    padding-left: 5px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#custom-powermenu {
+    border-radius: 0px;
+    margin-left: 0px;
+    padding-left: 5px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#clock {
+    border-radius: 0px 0px 10px 10px;
+    margin-left: 10px;
+}
+
+#network {
+    border-radius: 0px;
+    margin-left: 0px;
+    padding-left: 5px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#pulseaudio {
+    border-radius: 0px 0px 0px 10px;
+    border-right: 0px;
+}
+
+#battery {
+    border-radius: 0px 0px 0px 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 5px;
+    border-left: 0px;
+    border-right: 0px;
+}
+    '';
+  };
+}
