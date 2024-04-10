@@ -2,14 +2,30 @@
   description = "My NixOS config into a flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-23.11";
   };
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs }: 
+  let 
+    system = "x86_64-linux"
 
-    packages.x86_64-linux.hello = nixpkgs.legacyPackages.x86_64-linux.hello;
+    pkgs = import nixpkgs {
+      inherit system;
 
-    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+      config = { 
+        allowUnfree = true;
+      };
+    };
+
+  in 
+  {
+    nixosConfiguration = {
+      myNixos = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit system; };
+
+        modules = [./nixos/configuration.nix];
+      };
+    };
 
   };
 }
