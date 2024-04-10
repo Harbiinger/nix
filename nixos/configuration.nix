@@ -2,26 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, inputs, ... }:
 
-let
-  unstableTarball =
-    fetchTarball
-      https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
-in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      <home-manager/nixos>
+      inputs.home-manager.nixosModules.home-manager
     ];
-  nixpkgs.config = {
-    packageOverrides = pkgs: {
-      unstable = import unstableTarball {
-        config = config.nixpkgs.config;
-      };
-    };
-  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -80,7 +68,8 @@ in
   # Homemanager
   home-manager = {
     useUserPackages = true;
-    users.theo = import ./home.nix;
+    extraSpecialArgs = { inherit inputs; };
+    users.theo = ./home.nix;
   };
 
   # Steam
@@ -123,103 +112,103 @@ in
     isNormalUser = true;
     description = "Theo";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kitty
-      neovim
-      gnome.nautilus
-      librewolf
-      rofi-wayland
-      keepassxc
-      neofetch
-      freetube
-      eza
-      bat
-      swww
-      eww-wayland
-      signal-desktop
+    packages = [
+      pkgs.kitty
+      pkgs.neovim
+      pkgs.gnome.nautilus
+      pkgs.librewolf
+      pkgs.rofi-wayland
+      pkgs.keepassxc
+      pkgs.neofetch
+      pkgs.freetube
+      pkgs.eza
+      pkgs.bat
+      pkgs.swww
+      pkgs.eww-wayland
+      pkgs.signal-desktop
       # jq grim slurp wl-copy  -> hyprland_interactive_screenshot
-      jq
-      grim
-      slurp
-      wl-clipboard
-      dunst
-      pavucontrol
-      teamspeak_client
+      pkgs.jq
+      pkgs.grim
+      pkgs.slurp
+      pkgs.wl-clipboard
+      pkgs.dunst
+      pkgs.pavucontrol
+      pkgs.teamspeak_client
       #ungoogled-chromium
-      chromium
-      btop
-      gimp
-      mpv
-      ranger
-      wlogout
-      swaylock-effects
-      hugo
-      qbittorrent
-      element-desktop
-      discord
-      brightnessctl
-      pulseaudioFull
-      mpd
-      libnotify
-      unstable.godot_4
-      font-awesome
-      appimage-run
-      youtube-dl
-      jdk17
-      flatpak
-      aircrack-ng
-      baobab # disk usage analyzer
-      prismlauncher
-      R
-      rstudio
-      tcpdump
-      nmap
-      wireshark
-      termshark
-      libreoffice
-      gzdoom
-      burpsuite
-      racket
-      teamspeak5_client
-      unstable.xorg.libXtst
-      nom
-      newsflash
-      unstable.logseq
-      rustup
-      watershot
-      slade
-      doomseeker
-      chocolate-doom
-      odamex
-      unstable.zandronum
-      unstable.vscodium
-      gomuks
-      thunderbird
-      iamb
-      lutris
-      wineWowPackages.waylandFull
-      obs-studio
-      protonup-qt 
+      pkgs.chromium
+      pkgs.btop
+      pkgs.gimp
+      pkgs.mpv
+      pkgs.ranger
+      pkgs.wlogout
+      pkgs.swaylock-effects
+      pkgs.hugo
+      pkgs.qbittorrent
+      pkgs.element-desktop
+      pkgs.discord
+      pkgs.brightnessctl
+      pkgs.pulseaudioFull
+      pkgs.mpd
+      pkgs.libnotify
+      pkgs-unstable.godot_4
+      pkgs.font-awesome
+      pkgs.appimage-run
+      pkgs.youtube-dl
+      pkgs.jdk17
+      pkgs.flatpak
+      pkgs.aircrack-ng
+      pkgs.baobab # disk usage analyzer
+      pkgs.prismlauncher
+      pkgs.R
+      pkgs.rstudio
+      pkgs.tcpdump
+      pkgs.nmap
+      pkgs.wireshark
+      pkgs.termshark
+      pkgs.libreoffice
+      pkgs.gzdoom
+      pkgs.burpsuite
+      pkgs.racket
+      pkgs.teamspeak5_client
+      pkgs-unstable.xorg.libXtst
+      pkgs.nom
+      pkgs.newsflash
+      #pkgs-unstable.logseq
+      pkgs.rustup
+      pkgs.watershot
+      pkgs.slade
+      pkgs.doomseeker
+      pkgs.chocolate-doom
+      pkgs.odamex
+      pkgs-unstable.zandronum
+      pkgs-unstable.vscodium
+      pkgs.gomuks
+      pkgs.thunderbird
+      pkgs.iamb
+      pkgs.lutris
+      pkgs.wineWowPackages.waylandFull
+      pkgs.obs-studio
+      pkgs.protonup-qt 
     ];
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  #nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    home-manager
-    vim
-    wget
-    gcc
-    cmake
-    git
-    meson
-    ninja    
-    networkmanager
-    python311
-    unstable.mullvad-vpn
+  environment.systemPackages = [
+    pkgs.home-manager
+    pkgs.vim
+    pkgs.wget
+    pkgs.gcc
+    pkgs.cmake
+    pkgs.git
+    pkgs.meson
+    pkgs.ninja    
+    pkgs.networkmanager
+    pkgs.python311
+    pkgs-unstable.mullvad-vpn
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
