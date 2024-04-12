@@ -1,12 +1,14 @@
-{ config, pkgs, pkgs-unstable, lib, ... }:
+{ inputs, config, pkgs, pkgs-unstable, lib, ... }:
 
 {
 
   imports = [
-    /home/theo/GitHub/nix/nixos/myModules/waybar.nix
-    /home/theo/GitHub/nix/nixos/myModules/hyprlock.nix
+    inputs.nix-colors.homeManagerModules.default
+    ./myModules/waybar.nix
+    ./myModules/hyprlock.nix
   ];
 
+  # home
   home.username = "theo";
   home.homeDirectory = "/home/theo";
   home.stateVersion = "23.11";
@@ -17,16 +19,22 @@
     size = 24;
   };
 
+  # session variables
   home.sessionVariables = {
     EDITOR="nvim";
   };
 
+  # nix-colors
+  colorScheme = inputs.nix-colors.colorSchemes.onedark;
+
+  # default apps
   xdg.mimeApps.defaultApplications = {
     "text/plain" = ["nvim.desktop"];
     "application/pdf" = ["librewolf.desktop"];
     "video/*" = ["mpv.desktop"];
   };
 
+  # vim
   programs.vim = {
     enable = true;
     settings = { ignorecase = true; number = true; };

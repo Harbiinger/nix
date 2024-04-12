@@ -10,6 +10,8 @@
     general = {
       disable_loading_bar = true;
       grace = 5;
+      hide_cursor = true;
+      ignore_empty_input = true;
     };
 
     backgrounds = [
@@ -34,14 +36,14 @@
         dots_spacing = 0.2;
         dots_center = true;
 
-        outer_color = "rgb(34, 36, 45)";
+        outer_color = "#${config.colorScheme.palette.base0D}";
         inner_color = "rgb(34, 36, 45)";
         font_color = "rgb(218, 219, 234)";
 
         placeholder_text = "";
 
-        check_color = "rgb(#33CCFF)";
-        fail_color = "rgb(#EB0740)";
+        check_color = "#33CCFF";
+        fail_color = "#${config.colorScheme.palette.base08}";
       }
     ];
 
@@ -50,15 +52,15 @@
         monitor = "";
         text =
         ''
-          cmd[update:1000] echo "<span>$(${lib.getExe' pkgs.coreutils-full "date"} '+%H:%M %p')</span>"
+          cmd[update:1000] echo "<span>$(${lib.getExe' pkgs.coreutils-full "date"} '+%H:%M')</span>"
         '';
-        font_family = "JetBrainsMono Nerd Font";
-        font_size = 120;
+        font_family = "JetBrains Mono Bold";
+        font_size = 80;
         color = "rgb(218, 219, 234)";
 
         position = {
-          x = 50;
-          y = -240;
+          x = 0;
+          y = -250;
         };
 
         valign = "top";

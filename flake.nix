@@ -15,9 +15,13 @@
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-colors = {
+      url = "github:misterio77/nix-colors";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, hyprlock }@inputs: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, hyprlock, ... }@inputs: 
   let 
     system = "x86_64-linux";
 
@@ -42,6 +46,7 @@
 
     homeConfigurations = {
       theo = home-manager.lib.homeManagerConfiguration {
+        extraSpecialArgs = { inherit inputs; };
         modules = [ ./home.nix ];
       };
     };

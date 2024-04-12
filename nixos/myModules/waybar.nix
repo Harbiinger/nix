@@ -1,3 +1,5 @@
+{ inputs, config, ... }:
+
 {
   programs.waybar = {
     enable = true;
@@ -117,15 +119,16 @@
 
 window#waybar {
     background: rgba(21, 18, 27, 0);
-    color: #cdd6f4;
+    color: #${config.colorScheme.palette.base00};
 }
 
 tooltip {
-    background: #1e1e2e;
+    background: #${config.colorScheme.palette.base00};
+    color: #${config.colorScheme.palette.base00};
     border-radius: 10;
     border-width: 2px;
     border-style: solid;
-    border-color: #42A5F5;
+    border-color: #${config.colorScheme.palette.base0D};
 }
 
 #workspaces button {
@@ -135,7 +138,7 @@ tooltip {
 }
 
 #workspaces button.active {
-    color: #42A5F5;
+    color: #${config.colorScheme.palette.base0D};
 }
 
 #workspaces button.focused {
@@ -143,11 +146,11 @@ tooltip {
 }
 
 #workspaces button.urgent {
-    color: #11111b;
+    color: #${config.colorScheme.palette.base0F};
 }
 
 #workspaces button:hover {
-    color: #cdd6f4;
+    color: #${config.colorScheme.palette.base00};
 }
 
 #window,
@@ -162,8 +165,8 @@ tooltip {
 #memory,
 #custom-powermenu,
 #mpd {
-    background: #222431;
-    color: #42A5F5;
+    background: #${config.colorScheme.palette.base00};
+    color: #${config.colorScheme.palette.base0D};
     padding: 0px 10px;
     margin: 3px 0px;
     margin-top: 0px;
