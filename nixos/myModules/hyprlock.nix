@@ -36,14 +36,14 @@
         dots_spacing = 0.2;
         dots_center = true;
 
-        outer_color = "#${config.colorScheme.palette.base0D}";
-        inner_color = "rgb(34, 36, 45)";
-        font_color = "rgb(218, 219, 234)";
+        outer_color = "rgb(${config.colorScheme.palette.base0D})";
+        inner_color = "rgb(${config.colorScheme.palette.base00})";
+        font_color = "rgb(${config.colorScheme.palette.base07})";
 
         placeholder_text = "";
 
-        check_color = "#33CCFF";
-        fail_color = "#${config.colorScheme.palette.base08}";
+        check_color = "rgb(${config.colorScheme.palette.base0B})";
+        fail_color = "rgb(${config.colorScheme.palette.base08})";
       }
     ];
 
@@ -56,7 +56,7 @@
         '';
         font_family = "JetBrains Mono Bold";
         font_size = 80;
-        color = "rgb(218, 219, 234)";
+        color = "rgb(${config.colorScheme.palette.base0D})";
 
         position = {
           x = 0;

@@ -6,6 +6,7 @@
     inputs.nix-colors.homeManagerModules.default
     ./myModules/waybar.nix
     ./myModules/hyprlock.nix
+    ./myModules/kitty.nix
   ];
 
   # home
