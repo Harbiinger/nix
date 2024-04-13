@@ -113,7 +113,6 @@
     description = "Theo";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = [
-      pkgs.kitty
       pkgs.neovim
       pkgs.gnome.nautilus
       pkgs.librewolf

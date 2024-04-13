@@ -4,6 +4,7 @@
 
   imports = [
     inputs.nix-colors.homeManagerModules.default
+    ./myModules/hyprland.nix
     ./myModules/waybar.nix
     ./myModules/hyprlock.nix
     ./myModules/kitty.nix

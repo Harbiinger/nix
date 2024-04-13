@@ -11,9 +11,24 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     hyprlock = {
       url = "github:hyprwm/hyprlock";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    Hyprspace = {
+      url = github:Harbiinger/Hyprspace;
+      inputs.hyprland.follows = "hyprland";
     };
 
     nix-colors = {
@@ -21,7 +36,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, hyprlock, ... }@inputs: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, hyprlock, hyprland-plugins, Hyprspace, ... }@inputs: 
   let 
     system = "x86_64-linux";
 
