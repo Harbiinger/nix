@@ -8,6 +8,7 @@
     ./myModules/waybar.nix
     ./myModules/hyprlock.nix
     ./myModules/kitty.nix
+    ./myModules/rofi.nix
   ];
 
   # home
@@ -27,7 +28,7 @@
   };
 
   # nix-colors
-  colorScheme = inputs.nix-colors.colorSchemes.onedark;
+  colorScheme = inputs.nix-colors.colorSchemes.da-one-sea;
 
   # default apps
   xdg.mimeApps.defaultApplications = {
