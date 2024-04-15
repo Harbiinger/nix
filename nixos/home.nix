@@ -9,6 +9,7 @@
     ./myModules/hyprlock.nix
     ./myModules/kitty.nix
     ./myModules/rofi.nix
+    ./myModules/dunst.nix
   ];
 
   # home

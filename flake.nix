@@ -27,7 +27,7 @@
     };
 
     Hyprspace = {
-      url = github:Harbiinger/Hyprspace;
+      url = "github:KZDKM/Hyprspace";
       inputs.hyprland.follows = "hyprland";
     };
 

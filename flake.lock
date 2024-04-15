@@ -13,15 +13,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1713036777,
-        "narHash": "sha256-DmOSdXWO13G+bwg9/PSiuFnR9TV5AbPwxH6vz/jAJqQ=",
-        "owner": "Harbiinger",
+        "lastModified": 1713209466,
+        "narHash": "sha256-12fos+X3Fe5b4UuWNx/9PixxdzFd6IjTzzaxy1d0JdU=",
+        "owner": "KZDKM",
         "repo": "Hyprspace",
-        "rev": "c16c909260745e068c2676b92f1637de0635be13",
+        "rev": "df4b1fab7d41b6ce3c0d5d05d958b5ed241639d7",
         "type": "github"
       },
       "original": {
-        "owner": "Harbiinger",
+        "owner": "KZDKM",
         "repo": "Hyprspace",
         "type": "github"
       }

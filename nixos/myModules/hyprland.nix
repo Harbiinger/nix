@@ -21,7 +21,7 @@
       # monitor = ". preferred, auto, 1, mirror, eDP-1";
 
       exec-once = [
-        "dunst --config ~/.config/dunst/dunstsrc"
+        "dunst --config /home/theo/.config/dunst/dunstsrc"
         "waybar"
         "eww daemon"
         "swww init"
