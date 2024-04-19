@@ -126,7 +126,7 @@
         "$mainMod, S, exec, ~/bin/screenshot"
         "$mainMod SHIFT, S, exec, ~/bin/fast-screenshot"
         "$mainMod, E, exec, kitty -e ranger"
-        "$mainMod, D, exec, ~/.config/rofi/launchers/colorful/launcher.sh"
+        "$mainMod, D, exec, rofi -show drun"
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod, F, fullscreen,"
         "$mainMod, T, toggleopaque"
@@ -134,7 +134,7 @@
         "$mainMod SHIFT, E, exec, ~/.config/hypr/scripts/wlogout.sh "
         "$mainMod SHIFT, Space, togglefloating,"
         "$mainMod, V, togglesplit,"
-        "$mainMod, p, exec, ~/bin/menu"
+        "$mainMod, p, exec, ~/bin/wallpaper.sh"
         ",233, exec, brightessctl set +5%"
         ",232, exec, brightnessctl set 5%-"
 

@@ -133,16 +133,16 @@ tooltip {
 
 #workspaces button {
     padding: 5px;
-    color: #1565C0;
+    color: #${config.colorScheme.palette.base0D};
     margin-right: 5px;
 }
 
 #workspaces button.active {
-    color: #${config.colorScheme.palette.base0D};
+    color: #${config.colorScheme.palette.base07};
 }
 
 #workspaces button.focused {
-    color: #a6adc8;
+    color: #${config.colorScheme.palette.base08};
 }
 
 #workspaces button.urgent {

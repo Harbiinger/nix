@@ -188,6 +188,7 @@
       pkgs.wineWowPackages.waylandFull
       pkgs.obs-studio
       pkgs.protonup-qt 
+      pkgs.font-awesome
     ];
   };
 
@@ -208,6 +209,7 @@
     pkgs.networkmanager
     pkgs.python311
     pkgs-unstable.mullvad-vpn
+    pkgs.cron
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
