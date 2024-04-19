@@ -188,7 +188,7 @@
       pkgs.wineWowPackages.waylandFull
       pkgs.obs-studio
       pkgs.protonup-qt 
-      pkgs.font-awesome
+      pkgs.papirus-icon-theme
     ];
   };
 

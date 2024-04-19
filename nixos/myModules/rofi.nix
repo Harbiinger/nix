@@ -2,17 +2,17 @@
 {
   programs.rofi = {
     enable = true;
-    font = "JetBrains Mono Bold";
+    font = "JetBrainsMono Nerd Font Bold";
 
     theme = 
       let
         inherit (config.lib.formats.rasi) mkLiteral;
       in with config.colorScheme.palette; {
         "configuration" ={
-          font = "JetBrains Mono Bold 11";
+          font = "JetBrainsMono Nerd Font Bold 11";
           show-icons = true;
-          icon-theme = "font-awesome";
-          display-drun = "";
+          icon-theme = "Papirus";
+          display-drun = "  ";
           drun-display-format = "{name}";
           disable-history = false;
           sidebar-mode = false;
@@ -33,7 +33,7 @@
 
         "prompt" = {
           enabled = true;
-          padding = mkLiteral "0.30% 1% 0% -0.5%";
+          padding = mkLiteral "0.3% 1% 0% 0.1%";
           background-color = mkLiteral "#${base0D}";
           text-color = mkLiteral "#${base00}";
         };
