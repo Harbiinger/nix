@@ -139,7 +139,6 @@
       pkgs.gimp
       pkgs.mpv
       pkgs.ranger
-      pkgs.wlogout
       pkgs.swaylock-effects
       pkgs.hugo
       pkgs.qbittorrent

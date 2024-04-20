@@ -24,8 +24,7 @@
 
         modules-right = [
           "pulseaudio"
-          "cpu"
-          "memory"
+          "backlight"
           "network"
           "battery"
           "custom/powermenu"
@@ -38,11 +37,10 @@
 
         "backlight" = {
           device = "intel_backlight";
-          format = "{icon} {percent}";
-          format-icons = ["" "" ""];
+          format = "{icon} {percent}%";
+          format-icons = ["  " "  " "  "];
           on-scroll-up = "brightnessctl set +5%";
           on-scroll-down = "brightnessctl set 5%-";
-          min-length = 6;
         };
 
         "battery" = {
@@ -57,7 +55,7 @@
         };
 
         "clock" = {
-          format = "{: %R   %d/%m}";
+          format = "{:  %R    %d/%m}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
 
@@ -70,13 +68,14 @@
 
         "pulseaudio" = {
           format = "{icon} {volume}%";
-          format-muted = " 🔇  Muted";
+          format-muted = "   Muted";
+          format-bluetooth = " 󰥰 {volume}%";
           scroll-step = 1;
           format-icons = {
-            headphone = "";
-            hands-free = "";
-            headset = "";
-            default = ["" "" "墳" ""];
+            headphone = "  ";
+            hands-free = "  ";
+            headset = "  ";
+            default = ["  " "  " " 墳" "  "];
             };
         };
 
@@ -104,6 +103,7 @@
             playing = "  ";
           };
         };
+
       };
     };
 
@@ -150,12 +150,14 @@ tooltip {
 }
 
 #workspaces button:hover {
-    color: #${config.colorScheme.palette.base00};
+    background: #${config.colorScheme.palette.base0D};
+    color: #${config.colorScheme.palette.base07};
 }
 
 #window,
 #clock,
 #battery,
+#backlight,
 #pulseaudio,
 #network,
 #workspaces,
@@ -170,11 +172,11 @@ tooltip {
     padding: 0px 10px;
     margin: 3px 0px;
     margin-top: 0px;
-    border: 2px solid transparent;
+    border: 1px solid #${config.colorScheme.palette.base0D};
     /* border tuning : 
     background: linear-gradient(to left, #222431, #222431) padding-box, linear-gradient(to top, rgba(51, 204, 255, 0.93), rgba(0, 255, 153, 0.93)) border-box;
     */
-    border-radius: 50em;
+    border-radius: 0em;
     border-top: 0px;
 }
 
@@ -248,9 +250,22 @@ tooltip {
     border-right: 0px;
 }
 
+#network.disconnected {
+    color: #${config.colorScheme.palette.base08};
+}
+
 #pulseaudio {
     border-radius: 0px 0px 0px 10px;
     border-right: 0px;
+}
+
+#pulseaudio.muted {
+    color: #${config.colorScheme.palette.base08};
+}
+
+#backlight {
+    border-right: 0px;
+    border-left: 0px;
 }
 
 #battery {

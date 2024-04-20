@@ -10,6 +10,7 @@
     ./myModules/kitty.nix
     ./myModules/rofi.nix
     ./myModules/dunst.nix
+    ./myModules/wlogout.nix
   ];
 
   # home
