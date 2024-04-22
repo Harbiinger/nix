@@ -6,7 +6,7 @@
       name = "JetBrains Mono Bold";
     };
     settings = with config.colorScheme.palette; {
-      foreground = "#${base05}";
+      foreground = "#${base07}";
       background = "#${base00}";
       cursor     = "#${base05}";
       selection_foreground = "#${base00}";

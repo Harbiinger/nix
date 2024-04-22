@@ -30,8 +30,9 @@
   };
 
   # nix-colors
-  colorScheme = inputs.nix-colors.colorSchemes.da-one-sea;
+  # colorScheme = inputs.nix-colors.colorSchemes.da-one-sea;
   # colorScheme = inputs.nix-colors.colorSchemes.greenscreen;
+  colorScheme = inputs.nix-colors.colorSchemes.eva; 
 
   # default apps
   xdg.mimeApps.defaultApplications = {

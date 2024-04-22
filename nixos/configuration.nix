@@ -189,6 +189,7 @@
       pkgs.protonup-qt 
       pkgs.papirus-icon-theme
       pkgs.ncmpcpp
+      pkgs.fastfetch
     ];
   };
 

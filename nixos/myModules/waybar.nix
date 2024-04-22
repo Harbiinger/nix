@@ -113,7 +113,7 @@
     border-radius: 0;
     font-family: JetBrains Mono Bold;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 15px;
     min-height: 0;
 }
 
@@ -122,7 +122,7 @@ window#waybar {
     color: #${config.colorScheme.palette.base00};
 }
 
-tooltip {
+#tooltip {
     background: #${config.colorScheme.palette.base00};
     color: #${config.colorScheme.palette.base00};
     border-radius: 10;
@@ -172,6 +172,8 @@ tooltip {
     padding: 0px 10px;
     margin: 3px 0px;
     margin-top: 0px;
+    padding-top: 2px;
+    padding-bottom: 2px;
     border: 1px solid #${config.colorScheme.palette.base0D};
     /* border tuning : 
     background: linear-gradient(to left, #222431, #222431) padding-box, linear-gradient(to top, rgba(51, 204, 255, 0.93), rgba(0, 255, 153, 0.93)) border-box;
