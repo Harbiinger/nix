@@ -188,6 +188,7 @@
       pkgs.obs-studio
       pkgs.protonup-qt 
       pkgs.papirus-icon-theme
+      pkgs.ncmpcpp
     ];
   };
 

@@ -186,6 +186,7 @@ tooltip {
     padding-right: 5px;
     padding-left: 5px;
     border-left: 0px;
+    border-right: 0px;
 }
 
 #mpd {

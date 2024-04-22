@@ -135,6 +135,7 @@
         "$mainMod SHIFT, Space, togglefloating,"
         "$mainMod, V, togglesplit,"
         "$mainMod, p, exec, ~/bin/wallpaper.sh"
+        "$mainMod, M, exec, kitty -e ncmpcpp"
         ",233, exec, brightessctl set +5%"
         ",232, exec, brightnessctl set 5%-"
 

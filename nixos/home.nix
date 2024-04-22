@@ -31,6 +31,7 @@
 
   # nix-colors
   colorScheme = inputs.nix-colors.colorSchemes.da-one-sea;
+  # colorScheme = inputs.nix-colors.colorSchemes.greenscreen;
 
   # default apps
   xdg.mimeApps.defaultApplications = {
