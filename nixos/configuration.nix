@@ -133,8 +133,8 @@
       pkgs.dunst
       pkgs.pavucontrol
       pkgs.teamspeak_client
-      #ungoogled-chromium
-      pkgs.chromium
+      pkgs.ungoogled-chromium
+      # pkgs.chromium
       pkgs.btop
       pkgs.gimp
       pkgs.mpv
@@ -190,6 +190,10 @@
       pkgs.papirus-icon-theme
       pkgs.ncmpcpp
       pkgs.fastfetch
+      pkgs-unstable.zed-editor
+      pkgs-unstable.smassh
+      pkgs-unstable.waybar
+      pkgs.protonmail-bridge
     ];
   };
 

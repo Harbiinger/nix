@@ -55,7 +55,7 @@
         };
 
         "clock" = {
-          format = "{:  %R    %d/%m}";
+          format = "  {:%R    %d/%m}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
         };
 
@@ -113,7 +113,7 @@
     border-radius: 0;
     font-family: JetBrains Mono Bold;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 14px;
     min-height: 0;
 }
 

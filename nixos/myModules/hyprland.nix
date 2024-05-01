@@ -7,16 +7,17 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-
     plugins = [
-      inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+      # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
     ];
 
     settings = {
       # default
-      monitor = ", preferred, auto, 1";
-      # gaming
-      # monitor = "eDP-1, disable";
+      monitor = [ 
+        ", preferred, auto, 1"
+        # gaming
+        # "eDP-1, disable"
+      ];
       # mirror
       # monitor = ". preferred, auto, 1, mirror, eDP-1";
 
@@ -169,7 +170,7 @@
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
 
-        "$mainMod, TAB, overview:toggle,"
+        # "$mainMod, TAB, overview:toggle,"
       ];
       
       bindm = [

@@ -12,7 +12,7 @@
     };
 
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland/d20ee312108d0e7879011cfffa3a83d06e48d29e";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -26,17 +26,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    Hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
-    };
+    # Hyprspace = {
+    #   url = "github:KZDKM/Hyprspace";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
 
     nix-colors = {
       url = "github:misterio77/nix-colors";
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, hyprlock, hyprland-plugins, Hyprspace, ... }@inputs: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, hyprlock, hyprland-plugins, ... }@inputs: 
+  # outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, hyprlock, hyprland-plugins, Hyprspace, ... }@inputs: 
   let 
     system = "x86_64-linux";
 
