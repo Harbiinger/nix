@@ -134,11 +134,19 @@
         "$mainMod SHIFT, A, exec, ~/bin/lock_transparent.sh"
         "$mainMod SHIFT, E, exec, ~/.config/hypr/scripts/wlogout.sh "
         "$mainMod SHIFT, Space, togglefloating,"
+        "$mainMod, Space, pin,"
         "$mainMod, V, togglesplit,"
         "$mainMod, p, exec, ~/bin/wallpaper.sh"
         "$mainMod, M, exec, kitty -e ncmpcpp"
+
         ",233, exec, brightessctl set +5%"
         ",232, exec, brightnessctl set 5%-"
+        ",121, exec, pamixer -t" # mute sound F1
+
+
+        "$mainMod SHIFT,b, swapnext, prev"
+        "$mainMod SHIFT,n, swapnext,"
+        "$mainMod SHIFT, m, swapactiveworkspaces, eDP-1 HDMI-A-1"
 
         "$mainMod, H, movefocus, l"
         "$mainMod, L, movefocus, r"

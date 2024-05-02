@@ -190,10 +190,9 @@
       pkgs.papirus-icon-theme
       pkgs.ncmpcpp
       pkgs.fastfetch
-      pkgs-unstable.zed-editor
       pkgs-unstable.smassh
       pkgs-unstable.waybar
-      pkgs.protonmail-bridge
+      pkgs.pamixer
     ];
   };
 

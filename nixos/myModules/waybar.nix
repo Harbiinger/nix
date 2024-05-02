@@ -77,6 +77,7 @@
             headset = "  ";
             default = ["  " "  " " 墳" "  "];
             };
+          on-click = "pamixer -t";
         };
 
         "cpu" = {
