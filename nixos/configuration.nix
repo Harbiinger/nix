@@ -171,20 +171,17 @@
       pkgs-unstable.xorg.libXtst
       pkgs.nom
       pkgs.newsflash
-      #pkgs-unstable.logseq
+      pkgs-unstable.logseq
       pkgs.rustup
-      pkgs.watershot
-      pkgs.slade
-      pkgs.doomseeker
-      pkgs.chocolate-doom
-      pkgs.odamex
-      pkgs-unstable.zandronum
+      # pkgs.slade # Doom map maker
+      # pkgs.doomseeker # Doom server broswer
+      # pkgs.chocolate-doom # Doom port
+      # pkgs.odamex # Doom port
+      # pkgs-unstable.zandronum # Doom port
       pkgs-unstable.vscodium
       pkgs.gomuks
       pkgs.thunderbird
-      pkgs.iamb
       pkgs.lutris
-      pkgs.wineWowPackages.waylandFull
       pkgs.obs-studio
       pkgs.protonup-qt 
       pkgs.papirus-icon-theme
@@ -193,6 +190,7 @@
       pkgs-unstable.smassh
       pkgs-unstable.waybar
       pkgs.pamixer
+      pkgs.pkgsi686Linux.gperftools # required for hl2dm
     ];
   };
 

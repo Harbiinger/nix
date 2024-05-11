@@ -7,6 +7,8 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
+    xwayland.enable = true;
+
     plugins = [
       # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
     ];
@@ -33,8 +35,8 @@
         "float, rofi"
         "opaque, rofi"
         "opaque, freetube"
-        "opaque, libreworlf"
-        "opaque, signal"
+        "opaque, Libreworlf"
+        "opaque, Signal"
         "opaque, Discord"
         "opaque, kitty"
       ];
@@ -101,6 +103,7 @@
           "fade, 1, 10, md3_decel"
           "workspaces, 1, 7, md3_decel, slide"
           "border, 0, 3, md3_decel"
+          "layers, 1, 7, md3_decel, slide"
         ];
       };
 
@@ -126,6 +129,7 @@
         "$mainMod, Return, exec, kitty"
         "$mainMod, S, exec, ~/bin/screenshot"
         "$mainMod SHIFT, S, exec, ~/bin/fast-screenshot"
+        ", Print, exec, ~/bin/fast-screenshot"
         "$mainMod, E, exec, kitty -e ranger"
         "$mainMod, D, exec, rofi -show drun"
         "$mainMod SHIFT, Q, killactive,"

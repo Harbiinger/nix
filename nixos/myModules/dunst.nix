@@ -53,6 +53,11 @@
         frame_color = "#${base08}";
       };
 
+      play_sound = {
+        summary = "*";
+        script = "~/GitHub/nix/nixos/myModules/scripts/notification.sh";
+      };
+
     };
   };
 }

@@ -13,6 +13,7 @@
         height = 0;
 
         modules-left = [
+          "custom/nix-logo"
           "hyprland/workspaces"
           "tray"
           "mpd"
@@ -31,7 +32,7 @@
         ];
 
         "tray" = {
-          icon-size = 13;
+          icon-size = 16;
           spacing = 10;
         };
 
@@ -44,8 +45,12 @@
         };
 
         "battery" = {
-          format-charging = "{capacity}%"; 
-          format = "{capacity}%";
+          format-charging = " 󰂄 {capacity}%"; 
+          format = " 󰁹 {capacity}%";
+          states = [
+            "warning: 30"
+            "critical: 15"
+          ];
         };
 
         "hyprland/workspaces" = {
@@ -64,6 +69,7 @@
           format-ethernet = "  {ipaddr}";
           format-disconnected = " 睊 Disconnected";
           tooltip-format-wifi = "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}";
+          on-click = "~/GitHub/nix/nixos/myModules/scripts/toggleWifi.sh";
         };
 
         "pulseaudio" = {
@@ -93,6 +99,10 @@
         "custom/powermenu" = {
           format = "  ";
           on-click = "eww open menu --toggle";
+        };
+
+        "custom/nix-logo" = {
+            format = " 󱄅 ";
         };
 
         "mpd" = {
@@ -167,6 +177,7 @@ window#waybar {
 #temperature,
 #memory,
 #custom-powermenu,
+#custom-nix-logo,
 #mpd {
     background: #${config.colorScheme.palette.base00};
     color: #${config.colorScheme.palette.base0D};
@@ -241,6 +252,16 @@ window#waybar {
     border-right: 0px;
 }
 
+#custom-nix-logo {
+    border-radius: 0px;
+    margin-left: 0px;
+    padding-left: 0px;
+    padding-right: 5px;
+    border-left: 0px;
+    border-right: 0px;
+    font-size: 22px;
+}
+
 #clock {
     border-radius: 0px 0px 10px 10px;
     margin-left: 10px;
@@ -279,6 +300,14 @@ window#waybar {
     padding-left: 5px;
     border-left: 0px;
     border-right: 0px;
+}
+
+#battery.warning {
+    color: #${config.colorScheme.palette.base09};
+}
+
+#battery.critical {
+    color: #${config.colorScheme.palette.base08};
 }
     '';
   };
