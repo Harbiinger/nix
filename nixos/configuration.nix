@@ -16,13 +16,15 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
+  #boot.initrd.secrets = {
+  #  "/crypto_keyfile.bin" = null;
+  #};
 
   # Enable swap on luks
-  boot.initrd.luks.devices."luks-8f9fb7cc-979d-4bef-be7e-e7f2fe88555c".device = "/dev/disk/by-uuid/8f9fb7cc-979d-4bef-be7e-e7f2fe88555c";
-  boot.initrd.luks.devices."luks-8f9fb7cc-979d-4bef-be7e-e7f2fe88555c".keyFile = "/crypto_keyfile.bin";
+  #boot.initrd.luks.devices."luks-8f9fb7cc-979d-4bef-be7e-e7f2fe88555c".device = "/dev/disk/by-uuid/8f9fb7cc-979d-4bef-be7e-e7f2fe88555c";
+  #boot.initrd.luks.devices."luks-8f9fb7cc-979d-4bef-be7e-e7f2fe88555c".keyFile = "/crypto_keyfile.bin";
+  boot.initrd.luks.devices."luks-2dd5b8dd-1da7-4e74-9ac0-55eda27a4259".device = "/dev/disk/by-uuid/2dd5b8dd-1da7-4e74-9ac0-55eda27a4259";
+  #boot.initrd.luks.devices."luks-2dd5b8dd-1da7-4e74-9ac0-55eda27a4259".keyFile = "/crypto_keyfile.bin";
 
   # Nixos 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -39,6 +41,18 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_GB.UTF-8";
+    LC_IDENTIFICATION = "en_GB.UTF-8";
+    LC_MEASUREMENT = "en_GB.UTF-8";
+    LC_MONETARY = "en_GB.UTF-8";
+    LC_NAME = "en_GB.UTF-8";
+    LC_NUMERIC = "en_GB.UTF-8";
+    LC_PAPER = "en_GB.UTF-8";
+    LC_TELEPHONE = "en_GB.UTF-8";
+    LC_TIME = "en_GB.UTF-8";
+  };
 
   # Bluetooth
   hardware.bluetooth.enable = true;
@@ -60,8 +74,8 @@
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    # alsa.enable = true;
+    # alsa.support32Bit = true;
     pulse.enable = true;
 };
 
@@ -191,6 +205,7 @@
       pkgs-unstable.waybar
       pkgs.pamixer
       pkgs.pkgsi686Linux.gperftools # required for hl2dm
+      pkgs.unzip
     ];
   };
 

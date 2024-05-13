@@ -46,4 +46,10 @@
     enable = true;
     settings = { ignorecase = true; number = true; };
   };
+
+  programs.git = {
+    enable = true;
+    userEmail = "210170@umons.ac.be";
+    userName = "Harbiinger";
+  };
 }
