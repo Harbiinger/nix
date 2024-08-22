@@ -59,9 +59,9 @@
   services.blueman.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Hyprland
@@ -77,7 +77,44 @@
     # alsa.enable = true;
     # alsa.support32Bit = true;
     pulse.enable = true;
-};
+  };
+
+  # Enable thermald to proactively prevents overheating on Intel CPU.
+  services.thermald.enable = true;
+
+  services.upower.enable = true;
+
+  # Enable TLP for battery optimization
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+
+      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+      CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
+
+      PLATFORM_PROFILE_ON_AC= "performance";
+      PLATFORM_PROFILE_ON_BAT= "low-power";
+
+      RUNTIME_PM_ON_AC = "auto";
+      RUNTIME_PM_ON_BAT = "auto";
+
+      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_BAT = 0;
+
+      CPU_HWP_DYN_BOOST_ON_AC = 1;
+      CPU_HWP_DYN_BOOST_ON_BAT = 0;
+
+      CPU_MIN_PERF_ON_AC = 0;
+      CPU_MAX_PERF_ON_AC = 100;
+      CPU_MIN_PERF_ON_BAT = 0;
+      CPU_MAX_PERF_ON_BAT = 60;
+
+      START_CHARGE_THRESH_BAT0 = 40; 
+      STOP_CHARGE_THRESH_BAT0 = 85;
+    };
+  };
 
   # Homemanager
   home-manager = {
@@ -90,7 +127,7 @@
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    gamescopeSession.enable = true;
   };
  
   # Flatpak
@@ -112,6 +149,7 @@
   };
  
   # Mullvad
+  services.resolved.enable = true;
   #networking.iproute2.enable = true; 
   #networking.firewall.checkReversePath = "loose";
   #services.mullvad-vpn.enable = true;
@@ -126,86 +164,93 @@
     isNormalUser = true;
     description = "Theo";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = [
-      pkgs.neovim
-      pkgs.gnome.nautilus
-      pkgs.librewolf
-      pkgs.rofi-wayland
-      pkgs.keepassxc
-      pkgs.neofetch
-      pkgs.freetube
-      pkgs.eza
-      pkgs.bat
-      pkgs.swww
-      pkgs.eww-wayland
-      pkgs.signal-desktop
+    packages = with pkgs; [
+      neovim
+      nautilus
+      #librewolf
+      rofi-wayland
+      keepassxc
+      neofetch
+      freetube
+      eza
+      bat
+      swww
+      eww
+      signal-desktop
       # jq grim slurp wl-copy  -> hyprland_interactive_screenshot
-      pkgs.jq
-      pkgs.grim
-      pkgs.slurp
-      pkgs.wl-clipboard
-      pkgs.dunst
-      pkgs.pavucontrol
-      pkgs.teamspeak_client
-      pkgs.ungoogled-chromium
-      # pkgs.chromium
-      pkgs.btop
-      pkgs.gimp
-      pkgs.mpv
-      pkgs.ranger
-      pkgs.swaylock-effects
-      pkgs.hugo
-      pkgs.qbittorrent
-      pkgs.element-desktop
-      pkgs.discord
-      pkgs.brightnessctl
-      pkgs.pulseaudioFull
-      pkgs.mpd
-      pkgs.libnotify
-      pkgs-unstable.godot_4
-      pkgs.font-awesome
-      pkgs.appimage-run
-      pkgs.youtube-dl
-      pkgs.jdk17
-      pkgs.flatpak
-      pkgs.aircrack-ng
-      pkgs.baobab # disk usage analyzer
-      pkgs.prismlauncher
-      pkgs.R
-      pkgs.rstudio
-      pkgs.tcpdump
-      pkgs.nmap
-      pkgs.wireshark
-      pkgs.termshark
-      pkgs.libreoffice
-      pkgs.gzdoom
-      pkgs.burpsuite
-      pkgs.racket
-      pkgs.teamspeak5_client
-      pkgs-unstable.xorg.libXtst
-      pkgs.nom
-      pkgs.newsflash
-      pkgs-unstable.logseq
-      pkgs.rustup
+      jq
+      grim
+      slurp
+      wl-clipboard
+      dunst
+      pavucontrol
+      teamspeak_client
+      ungoogled-chromium
+      btop
+      gimp
+      mpv
+      ranger
+      swaylock-effects
+      hugo
+      qbittorrent
+      element-desktop
+      discord
+      brightnessctl
+      pulseaudioFull
+      mpd
+      libnotify
+      godot_4
+      font-awesome
+      appimage-run
+      jdk21
+      flatpak
+      aircrack-ng
+      baobab # disk usage analyzer
+      prismlauncher
+      R
+      rstudio
+      tcpdump
+      nmap
+      wireshark
+      termshark
+      libreoffice
+      gzdoom
+      burpsuite
+      xorg.libXtst
+      newsflash
+      # logseq
+      rustup
       # pkgs.slade # Doom map maker
       # pkgs.doomseeker # Doom server broswer
       # pkgs.chocolate-doom # Doom port
       # pkgs.odamex # Doom port
       # pkgs-unstable.zandronum # Doom port
-      pkgs-unstable.vscodium
-      pkgs.gomuks
-      pkgs.thunderbird
-      pkgs.lutris
-      pkgs.obs-studio
-      pkgs.protonup-qt 
-      pkgs.papirus-icon-theme
-      pkgs.ncmpcpp
-      pkgs.fastfetch
-      pkgs-unstable.smassh
-      pkgs-unstable.waybar
-      pkgs.pamixer
-      pkgs.pkgsi686Linux.gperftools # required for hl2dm
-      pkgs.unzip
+      vscodium
+      thunderbird
+      lutris
+      obs-studio
+      papirus-icon-theme
+      ncmpcpp
+      fastfetch
+      pamixer
+      pkgsi686Linux.gperftools # required for hl2dm
+      unzip
+      feather
+      tor-browser
+      mullvad-browser
+      blockbench
+      unrar
+      gtkradiant
+      steamPackages.steamcmd
+      ffmpeg
+      zip
+      spotdl
+      wineWowPackages.staging
+      heroic
+      gamescope
+      protonup-qt
+      zed-editor
+      nodejs_22 # for copilot
     ];
   };
 
@@ -214,19 +259,19 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = [
-    pkgs.home-manager
-    pkgs.vim
-    pkgs.wget
-    pkgs.gcc
-    pkgs.cmake
-    pkgs.git
-    pkgs.meson
-    pkgs.ninja    
-    pkgs.networkmanager
-    pkgs.python311
-    pkgs-unstable.mullvad-vpn
-    pkgs.cron
+  environment.systemPackages = with pkgs; [
+    home-manager
+    vim
+    wget
+    gcc
+    cmake
+    git
+    meson
+    ninja    
+    networkmanager
+    python3
+    mullvad-vpn
+    cron
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

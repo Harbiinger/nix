@@ -1,11 +1,10 @@
 { config, inputs, pkgs, lib, specialArgs, options, modulesPath, nixosConfig, osConfig }: 
 {
-  imports = [
-    inputs.hyprlock.homeManagerModules.hyprlock
-  ];
 
   programs.hyprlock = {
     enable = true;
+
+    settings = {
 
     general = {
       disable_loading_bar = true;
@@ -68,5 +67,6 @@
       }
     ];
 
+  };
   };
 }

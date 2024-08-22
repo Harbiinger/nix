@@ -1,9 +1,9 @@
 { config, inputs, pkgs, lib, ... }:
 {
 
-  imports = [
-    inputs.hyprland.homeManagerModules.default
-  ];
+  # imports = [
+  #   inputs.hyprland.homeManagerModules.default
+  # ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -19,9 +19,9 @@
         ", preferred, auto, 1"
         # gaming
         # "eDP-1, disable"
-      ];
       # mirror
-      # monitor = ". preferred, auto, 1, mirror, eDP-1";
+        # ",preferred, auto, 1, mirror, eDP-1"
+      ];
 
       exec-once = [
         "dunst --config /home/theo/.config/dunst/dunstsrc"
@@ -72,7 +72,7 @@
 
       decoration = {
         rounding = 10;
-        active_opacity = 0.9;
+        active_opacity = 1;
         inactive_opacity = 0.9;
         fullscreen_opacity = 1.0;
 
@@ -112,10 +112,6 @@
         preserve_split = true;
       };
 
-      master = {
-        new_is_master = true;
-      };
-
       gestures = {
         workspace_swipe = false;
       };
@@ -134,7 +130,6 @@
         "$mainMod, D, exec, rofi -show drun"
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod, F, fullscreen,"
-        "$mainMod, T, toggleopaque"
         "$mainMod SHIFT, A, exec, ~/bin/lock_transparent.sh"
         "$mainMod SHIFT, E, exec, ~/.config/hypr/scripts/wlogout.sh "
         "$mainMod SHIFT, Space, togglefloating,"
