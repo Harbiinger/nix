@@ -17,7 +17,7 @@
       # default
       monitor = [ 
         ", preferred, auto, 1"
-        # gaming
+      # gaming
         # "eDP-1, disable"
       # mirror
         # ",preferred, auto, 1, mirror, eDP-1"
@@ -33,12 +33,6 @@
 
       windowrule = [
         "float, rofi"
-        "opaque, rofi"
-        "opaque, freetube"
-        "opaque, Libreworlf"
-        "opaque, Signal"
-        "opaque, Discord"
-        "opaque, kitty"
       ];
 
       env = [
@@ -73,7 +67,7 @@
       decoration = {
         rounding = 10;
         active_opacity = 1;
-        inactive_opacity = 0.9;
+        inactive_opacity = 1;
         fullscreen_opacity = 1.0;
 
         blur = {
@@ -83,10 +77,12 @@
           new_optimizations = true;
         };
 
-        drop_shadow = false;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        shadow = {
+          enabled = false;
+          range = 4;
+          render_power = 3;
+          color = "rgba(1a1a1aee)";
+        };
       };
 
       animations = {

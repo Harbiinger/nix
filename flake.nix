@@ -10,34 +10,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # hyprland = {
-    #   url = "github:hyprwm/Hyprland/d20ee312108d0e7879011cfffa3a83d06e48d29e";
-    #   # url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    #   #inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-
-    # hyprlock = {
-    #   url = "github:hyprwm/hyprlock";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # Hyprspace = {
-    #   url = "github:KZDKM/Hyprspace";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-
     nix-colors = {
       url = "github:misterio77/nix-colors";
+    };
+
+    nvchad4nix = {
+      url = "github:nix-community/nix4nvchad";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs: 
-  # outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, hyprlock, hyprland-plugins, Hyprspace, ... }@inputs: 
   let 
     system = "x86_64-linux";
 

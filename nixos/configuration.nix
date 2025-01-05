@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, pkgs-unstable, inputs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -123,6 +123,15 @@
     users.theo = ./home.nix;
   };
 
+  # NvChad
+  nixpkgs = {
+    overlays = [
+      (final: prev: {
+        nvchad = inputs.nvchad4nix.packages."${pkgs.system}".nvchad;
+      })
+    ];
+  };
+
   # Steam
   programs.steam = {
     enable = true;
@@ -134,8 +143,12 @@
   services.flatpak.enable = true;
 
   # Virtual Box
-  #virtualisation.virtualbox.host.enable = true;
-  #users.extraGroups.vboxusers.members = [ "theo" ];
+  # virtualisation.virtualbox.host.enable = true;
+  # users.extraGroups.vboxusers.members = [ "theo" ];
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
+
+  # Docker
+  virtualisation.docker.enable = true;
 
   # Wireshark
   programs.wireshark.enable = true;
@@ -154,18 +167,13 @@
   #networking.firewall.checkReversePath = "loose";
   #services.mullvad-vpn.enable = true;
 
-  # Fonts
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-  ];
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.theo = {
     isNormalUser = true;
     description = "Theo";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
-      neovim
+      #neovim
       nautilus
       #librewolf
       rofi-wayland
@@ -184,7 +192,7 @@
       wl-clipboard
       dunst
       pavucontrol
-      teamspeak_client
+      teamspeak3
       ungoogled-chromium
       btop
       gimp
@@ -240,7 +248,6 @@
       mullvad-browser
       blockbench
       unrar
-      gtkradiant
       steamPackages.steamcmd
       ffmpeg
       zip
@@ -251,6 +258,8 @@
       protonup-qt
       zed-editor
       nodejs_22 # for copilot
+      ankama-launcher
+      nerd-fonts.jetbrains-mono
     ];
   };
 

@@ -11,6 +11,7 @@
     ./myModules/rofi.nix
     ./myModules/dunst.nix
     ./myModules/wlogout.nix
+    ./myModules/nvchad.nix
   ];
 
   # home
