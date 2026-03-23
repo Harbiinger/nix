@@ -10,9 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-colors = {
-      url = "github:misterio77/nix-colors";
-    };
+    nix-colors.url = "github:misterio77/nix-colors";
 
     nvchad4nix = {
       url = "github:nix-community/nix4nvchad";
@@ -33,7 +31,7 @@
   {
     nixosConfigurations = {
       myNixos = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs system pkgs; };
+        specialArgs = { inherit inputs system; };
         modules = [./nixos/configuration.nix];
       };
     };

@@ -5,10 +5,14 @@
     font = {
       name = "JetBrains Mono Bold";
     };
+    #extraConfig = "font SF Distant Galaxy Regular 8";
     settings = with config.colorScheme.palette; {
       foreground = "#${base07}";
       background = "#${base00}";
+      background_opacity = 0.5;
+      #background_image = "/home/theo/Pictures/Wallpapers/nixos.png";
       cursor     = "#${base05}";
+      cursor_trail = 3;
       selection_foreground = "#${base00}";
       selection_background = "#${base05}";
       confirm_os_window_close = 0;
@@ -31,6 +35,5 @@
       color15 = "#${base07}";
 
     };
-    #theme = "One Dark";
   };
 }

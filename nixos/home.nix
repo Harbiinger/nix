@@ -12,6 +12,8 @@
     ./myModules/dunst.nix
     ./myModules/wlogout.nix
     ./myModules/nvchad.nix
+    ./myModules/newsboat.nix
+    ./myModules/starship.nix
   ];
 
   # home
@@ -33,12 +35,39 @@
   # nix-colors
   # colorScheme = inputs.nix-colors.colorSchemes.da-one-sea;
   # colorScheme = inputs.nix-colors.colorSchemes.greenscreen;
-  colorScheme = inputs.nix-colors.colorSchemes.eva; 
+  # colorScheme = inputs.nix-colors.colorSchemes.eva; 
+  # colorScheme = inputs.nix-colors.colorSchemes.gruvbox-light-medium;
+  colorScheme = inputs.nix-colors.colorSchemes.apathy;
+  # colorScheme = inputs.nix-colors.colorSchemes.framer;
+  # colorScheme = {
+  #   slug = "starwars";
+  #   name = "starwars";
+  #   author = "Theo Godin";
+  #   palette = {
+  #     base00 = "#020d5c";
+  #     base01 = "#020d5c";
+  #     base02 = "#041E58";
+  #     base03 = "#042358";
+  #     base04 = "#052757";
+  #     base05 = "#ebfeff";
+  #     base06 = "#ebfeff";
+  #     base07 = "#ebfeff";
+  #     base08 = "#fd6c3d";
+  #     base09 = "#bc3320";
+  #     base0A = "#fdfa53";
+  #     base0B = "#46f8fc";
+  #     base0C = "#46f8fc";
+  #     base0D = "#46f8fc";
+  #     base0E = "#6870f7";
+  #     base0F = "#7b4225";
+  #   };
+  # };
+  
 
   # default apps
   xdg.mimeApps.defaultApplications = {
     "text/plain" = ["nvim.desktop"];
-    "application/pdf" = ["librewolf.desktop"];
+    "application/pdf" = ["mullvad-browser.desktop"];
     "video/*" = ["mpv.desktop"];
   };
 
@@ -50,7 +79,9 @@
 
   programs.git = {
     enable = true;
-    userEmail = "210170@umons.ac.be";
-    userName = "Harbiinger";
+    settings.user = {
+      email = "theo.godin@protonmail.com";
+      name = "harbiinger";
+    };
   };
 }

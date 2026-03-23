@@ -122,8 +122,7 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: JetBrains Mono Bold;
-    font-weight: bold;
+    font-family: SF Distant Galaxy;
     font-size: 14px;
     min-height: 0;
 }

@@ -9,7 +9,8 @@
         inherit (config.lib.formats.rasi) mkLiteral;
       in with config.colorScheme.palette; {
         "configuration" ={
-          font = "JetBrainsMono Nerd Font Bold 11";
+          #font = "JetBrainsMono Nerd Font Bold 11";
+          font = "SF Distant Galaxy Regular 11";
           show-icons = true;
           icon-theme = "Papirus";
           display-drun = "  ";

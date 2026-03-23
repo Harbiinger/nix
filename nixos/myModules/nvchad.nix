@@ -1,15 +1,14 @@
 { inputs, config, pkgs, ... }: {
 
   imports = [
-    inputs.nvchad4nix.homeManagerModule
+   inputs.nvchad4nix.homeManagerModule
   ];
 
   programs.nvchad = {
     enable = true;
 
-    # extraPlugins = ''return {
-    #   {"github/copilot.vim", lazy=false},
-    # }'';
+    extraPlugins = ''return {
+    }'';
     
     extraPackages = with pkgs; [
       nodePackages.bash-language-server
@@ -18,6 +17,16 @@
         python-lsp-server
       ]))
     ];
+
+    chadrcConfig = ''
+      local M = {}
+      M.base16 = {
+        theme = "gruvbox-light-medium"
+      }
+      return M
+    '';
+
     hm-activation = true;
-  };
+
+    };
 }

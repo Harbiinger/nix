@@ -32,7 +32,6 @@
       ];
 
       windowrule = [
-        "float, rofi"
       ];
 
       env = [
@@ -75,6 +74,7 @@
           size = 5;
           passes = 3;
           new_optimizations = true;
+          popups = true;
         };
 
         shadow = {
@@ -100,16 +100,13 @@
           "workspaces, 1, 7, md3_decel, slide"
           "border, 0, 3, md3_decel"
           "layers, 1, 7, md3_decel, slide"
+          "border, "
         ];
       };
 
       dwindle = {
         pseudotile = true;
         preserve_split = true;
-      };
-
-      gestures = {
-        workspace_swipe = false;
       };
 
       plugin = {
@@ -127,12 +124,13 @@
         "$mainMod SHIFT, Q, killactive,"
         "$mainMod, F, fullscreen,"
         "$mainMod SHIFT, A, exec, ~/bin/lock_transparent.sh"
-        "$mainMod SHIFT, E, exec, ~/.config/hypr/scripts/wlogout.sh "
+        "$mainMod SHIFT, E, exec, ~/.config/eww/scripts/toggle-powermenu.sh"
         "$mainMod SHIFT, Space, togglefloating,"
         "$mainMod, Space, pin,"
         "$mainMod, V, togglesplit,"
         "$mainMod, p, exec, ~/bin/wallpaper.sh"
         "$mainMod, M, exec, kitty -e ncmpcpp"
+        "$mainMod, N, exec, kitty -e newsboat"
 
         ",233, exec, brightessctl set +5%"
         ",232, exec, brightnessctl set 5%-"

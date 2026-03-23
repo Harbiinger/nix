@@ -15,23 +15,17 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Setup keyfile
-  #boot.initrd.secrets = {
-  #  "/crypto_keyfile.bin" = null;
-  #};
-
   # Enable swap on luks
-  #boot.initrd.luks.devices."luks-8f9fb7cc-979d-4bef-be7e-e7f2fe88555c".device = "/dev/disk/by-uuid/8f9fb7cc-979d-4bef-be7e-e7f2fe88555c";
-  #boot.initrd.luks.devices."luks-8f9fb7cc-979d-4bef-be7e-e7f2fe88555c".keyFile = "/crypto_keyfile.bin";
   boot.initrd.luks.devices."luks-2dd5b8dd-1da7-4e74-9ac0-55eda27a4259".device = "/dev/disk/by-uuid/2dd5b8dd-1da7-4e74-9ac0-55eda27a4259";
-  #boot.initrd.luks.devices."luks-2dd5b8dd-1da7-4e74-9ac0-55eda27a4259".keyFile = "/crypto_keyfile.bin";
 
   # Nixos 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # Network
   networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  # TMP 
+  networking.firewall.allowPing = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -67,8 +61,15 @@
   # Hyprland
   programs.hyprland.enable = true;
   security.pam.services.swaylock = {};
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ 
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland 
+    ];
+    xdgOpenUsePortal = true;
+    config.common.default = [ "hyprland" ];
+  };
 
   # Pirewire
   security.rtkit.enable = true;
@@ -111,8 +112,8 @@
       CPU_MIN_PERF_ON_BAT = 0;
       CPU_MAX_PERF_ON_BAT = 60;
 
-      START_CHARGE_THRESH_BAT0 = 40; 
-      STOP_CHARGE_THRESH_BAT0 = 85;
+      START_CHARGE_THRESH_BAT0 = 79; 
+      STOP_CHARGE_THRESH_BAT0 = 80;
     };
   };
 
@@ -132,23 +133,36 @@
     ];
   };
 
+  # vial 
+  services.udev.packages = with pkgs; [
+    vial
+    qmk-udev-rules
+  ];
+
   # Steam
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     gamescopeSession.enable = true;
   };
+
+  # Jellyfin
+  services.jellyfin = {
+    enable = true;
+  };
  
   # Flatpak
   services.flatpak.enable = true;
 
   # Virtual Box
-  # virtualisation.virtualbox.host.enable = true;
-  # users.extraGroups.vboxusers.members = [ "theo" ];
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "theo" ];
   # virtualisation.virtualbox.host.enableExtensionPack = true;
+  virtualisation.vmware.host.enable = true;
 
   # Docker
   virtualisation.docker.enable = true;
+  virtualisation.podman.enable = true;
 
   # Wireshark
   programs.wireshark.enable = true;
@@ -163,22 +177,19 @@
  
   # Mullvad
   services.resolved.enable = true;
-  #networking.iproute2.enable = true; 
-  #networking.firewall.checkReversePath = "loose";
-  #services.mullvad-vpn.enable = true;
+
+  # Tailscale
+  services.tailscale.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.theo = {
     isNormalUser = true;
     description = "Theo";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "dialout" ];
     packages = with pkgs; [
-      #neovim
       nautilus
-      #librewolf
-      rofi-wayland
+      rofi
       keepassxc
-      neofetch
       freetube
       eza
       bat
@@ -192,10 +203,10 @@
       wl-clipboard
       dunst
       pavucontrol
-      teamspeak3
+      teamspeak6-client
       ungoogled-chromium
       btop
-      gimp
+      gimp3
       mpv
       ranger
       swaylock-effects
@@ -203,6 +214,7 @@
       qbittorrent
       element-desktop
       discord
+      stoat-desktop
       brightnessctl
       pulseaudioFull
       mpd
@@ -210,13 +222,14 @@
       godot_4
       font-awesome
       appimage-run
-      jdk21
+      javaPackages.compiler.openjdk25
+      maven
+      # jdk17
+      # jdk21
       flatpak
       aircrack-ng
       baobab # disk usage analyzer
       prismlauncher
-      R
-      rstudio
       tcpdump
       nmap
       wireshark
@@ -224,9 +237,7 @@
       libreoffice
       gzdoom
       burpsuite
-      xorg.libXtst
-      newsflash
-      # logseq
+      libXtst
       rustup
       # pkgs.slade # Doom map maker
       # pkgs.doomseeker # Doom server broswer
@@ -245,29 +256,44 @@
       unzip
       feather
       tor-browser
+      mullvad-vpn
       mullvad-browser
       blockbench
       unrar
-      steamPackages.steamcmd
+      steamcmd
       ffmpeg
       zip
       spotdl
-      wineWowPackages.staging
-      heroic
-      gamescope
-      protonup-qt
+      # heroic
       zed-editor
-      nodejs_22 # for copilot
-      ankama-launcher
+      nodejs_25
       nerd-fonts.jetbrains-mono
+      blender
+      vial
+      go
+      # aseprite
+      calibre
+      obsidian
+      audacity
+      cisco-packet-tracer_9
+      cool-retro-term
+      vlc
+      xdg-utils
+      # super-productivity
+      # zulip
+      kdePackages.kdenlive
+      arduino-ide
+      mindustry
+      niri
+      noctalia-shell
+      xwayland-satellite
     ];
   };
 
   # Allow unfree packages
-  #nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     home-manager
     vim
@@ -279,35 +305,8 @@
     ninja    
     networkmanager
     python3
-    mullvad-vpn
     cron
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.05"; # Did you read the comment?
-
+  system.stateVersion = "23.05";
 }
