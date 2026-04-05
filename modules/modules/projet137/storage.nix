@@ -4,7 +4,7 @@
 
     nixos = {
 
-      fileSystems."/mnt/p137/home" = {
+      fileSystems."/mnt/p137" = {
         device = "u570957@u570957.your-storagebox.de:/home/";
         fsType = "fuse.sshfs";
         options = [
