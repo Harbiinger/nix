@@ -194,7 +194,6 @@
       eza
       bat
       swww
-      eww
       signal-desktop
       # jq grim slurp wl-copy  -> hyprland_interactive_screenshot
       jq
@@ -284,9 +283,6 @@
       kdePackages.kdenlive
       arduino-ide
       mindustry
-      niri
-      noctalia-shell
-      xwayland-satellite
     ];
   };
 
@@ -306,6 +302,7 @@
     networkmanager
     python3
     cron
+    xwayland
   ];
 
   system.stateVersion = "23.05";
