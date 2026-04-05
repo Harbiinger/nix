@@ -1,47 +1,28 @@
+# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
+# Use `nix run .#write-flake` to regenerate it.
 {
-  description = "My NixOS config into a flake";
+
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
-
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
+    den.url = "github:vic/den";
+    flake-file.url = "github:vic/flake-file";
+    flake-parts = {
+      inputs.nixpkgs-lib.follows = "nixpkgs-lib";
+      url = "github:hercules-ci/flake-parts";
+    };
     home-manager = {
+      inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    import-tree.url = "github:vic/import-tree";
     nix-colors.url = "github:misterio77/nix-colors";
-
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-lib.follows = "nixpkgs";
     nvchad4nix = {
-      url = "github:nix-community/nix4nvchad";
       inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nix4nvchad";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: 
-  let 
-    system = "x86_64-linux";
-
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-    };
-    
-  in 
-  {
-    nixosConfigurations = {
-      myNixos = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs system; };
-        modules = [./nixos/configuration.nix];
-      };
-    };
-
-    homeConfigurations = {
-      theo = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = { inherit inputs; };
-        modules = [ ./home.nix ];
-      };
-    };
-
-  };
 }
