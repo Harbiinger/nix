@@ -37,6 +37,7 @@
 
         # Enable networking
         networking.networkmanager.enable = true;
+        networking.firewall.allowPing = true;
 
         # Set your time zone.
         time.timeZone = "Europe/Brussels";
@@ -93,6 +94,13 @@
 
         # Tailscale
         services.tailscale.enable = true;
+
+        # Fonts
+        fonts.packages = with pkgs; [
+          nerd-fonts.jetbrains-mono
+          # font-awesome
+          # open-sans
+        ];
 
         # List packages installed in system profile.
         environment.systemPackages = with pkgs; [

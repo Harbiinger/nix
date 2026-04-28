@@ -31,6 +31,7 @@
             "docker"
             "dialout"
           ];
+
           packages = with pkgs; [
             discord
             teamspeak6-client
@@ -43,7 +44,9 @@
             unrar
             obsidian
           ];
+          
         };
+
       };
 
     homeManager =
@@ -90,8 +93,7 @@
             pulseaudioFull
             mpd
             libnotify
-            godot_4
-            font-awesome
+            godot
             appimage-run
             javaPackages.compiler.openjdk25
             maven
@@ -130,7 +132,7 @@
             zip
             zed-editor
             nodejs_25
-            nerd-fonts.jetbrains-mono
+            papirus-icon-theme
             vial
             go
             # aseprite
@@ -147,6 +149,10 @@
             xwayland-satellite
             nixd
             nixfmt
+            edopro
+            (retroarch.withCores (cores: with libretro; [
+              bsnes
+            ]))
           ];
         };
       };
