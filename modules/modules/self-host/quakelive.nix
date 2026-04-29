@@ -24,13 +24,16 @@
           pkgs.python312
           pkgs.steam-run
         ];
+
+        environment = {
+            PYTHONPATH = "${pkgs.python312Packages.redis}/lib/python3.12/site-packages:${pkgs.python312Packages.hiredis}/lib/python3.12/site-packages:${pkgs.python312Packages.pyzmq}/lib/python3.12/site-packages:${pkgs.python312Packages.urllib3}/lib/python3.12/site-packages:${pkgs.python312Packages.requests}/lib/python3.12/site-packages:${pkgs.python312Packages.idna}/lib/python3.12/site-packages:${pkgs.python312Packages.certifi}/lib/python3.12/site-packages:${pkgs.python312Packages.charset-normalizer}/lib/python3.12/site-packages";
+            LD_LIBRARY_PATH = "${pkgs.python312}/lib:$LD_LIBRARY_PATH";
+        };
+        
         serviceConfig = {
           User = "quakelive";
-          Environment = ''
-          PYTHONPATH=${pkgs.python312Packages.redis}/lib/python3.12/site-packages:${pkgs.python312Packages.hiredis}/lib/python3.12/site-packages:${pkgs.python312Packages.pyzmq}/lib/python3.12/site-packages:${pkgs.python312Packages.urllib3}/lib/python3.12/site-packages:${pkgs.python312Packages.requests}/lib/python3.12/site-packages:${pkgs.python312Packages.idna}/lib/python3.12/site-packages:${pkgs.python312Packages.certifi}/lib/python3.12/site-packages:${pkgs.python312Packages.charset-normalizer}/lib/python3.12/site-packages
-          PATH=${pkgs.python312}/bin:${pkgs.steam-run}/bin:$PATH
-          '';
-          ExecStart = "${pkgs.steam-run}/bin/steam-run /home/quakelive/.quakelive/start.sh";
+          WorkingDirectory = "/home/quakelive";
+          ExecStart = "${pkgs.steam-run}/bin/steam-run .quakelive/start.sh";
           Restart = "always";
         };
       };
@@ -44,10 +47,21 @@
 
     homeManager = { pkgs, ... }: {
       nixpkgs.config.allowUnfree = true;
+      programs.bash = {
+        enable = true;
+
+        initExtra = ''
+          # include .profile if it exists
+          [[ -f ~/.profile ]] && . ~/.profile
+        '';
+      };
+
       home = {
         sessionVariables = {
           TERM = "kitty";
           EDITOR = "nvim";
+          LD_LIBRARY_PATH="${pkgs.python312}/lib:$LD_LIBRARY_PATH";
+          PYTHONPATH="${pkgs.python312Packages.redis}/lib/python3.12/site-packages:${pkgs.python312Packages.hiredis}/lib/python3.12/site-packages:${pkgs.python312Packages.pyzmq}/lib/python3.12/site-packages:${pkgs.python312Packages.urllib3}/lib/python3.12/site-packages:${pkgs.python312Packages.requests}/lib/python3.12/site-packages:${pkgs.python312Packages.idna}/lib/python3.12/site-packages:${pkgs.python312Packages.certifi}/lib/python3.12/site-packages:${pkgs.python312Packages.charset-normalizer}/lib/python3.12/site-packages";
         };
 
         packages = with pkgs; [

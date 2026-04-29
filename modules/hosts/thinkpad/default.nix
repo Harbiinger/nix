@@ -37,7 +37,6 @@
 
         # Enable networking
         networking.networkmanager.enable = true;
-        networking.firewall.allowPing = true;
 
         # Set your time zone.
         time.timeZone = "Europe/Brussels";
