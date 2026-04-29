@@ -25,12 +25,12 @@
 
           "transfer.bariumgames.eu".extraConfig = ''
             tls theo.godin@protonmail.com
-            reverse_proxy: 8080
+            reverse_proxy :8080
           '';
 
           "gameboy.bariumgames.eu".extraConfig = ''
             root * /var/www/gameboy
-            file server
+            file_server
           '';
         };
       };
