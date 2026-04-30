@@ -96,9 +96,13 @@
 
         # Fonts
         fonts.packages = with pkgs; [
+          noto-fonts
+          noto-fonts-color-emoji
           nerd-fonts.jetbrains-mono
-          # font-awesome
-          # open-sans
+          font-awesome
+          open-sans
+          dejavu_fonts
+          liberation_ttf
         ];
 
         # List packages installed in system profile.

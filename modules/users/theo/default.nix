@@ -59,6 +59,12 @@
 
         colorScheme = inputs.nix-colors.colorSchemes.eva;
 
+        gtk.font = {
+          package = pkgs.open-sans;
+          name = "Open Sans";
+          size = "8";
+        };
+
         home = {
           pointerCursor = {
             gtk.enable = true;
@@ -74,7 +80,7 @@
             signal-desktop
             eza
             bat
-            swww
+            awww
             jq
             grim
             slurp
@@ -83,7 +89,7 @@
             pavucontrol
             ungoogled-chromium
             gimp3
-            mpv
+            # mpv
             ranger
             swaylock-effects
             hugo
@@ -117,7 +123,6 @@
             # pkgs-unstable.zandronum # Doom port
             vscodium
             thunderbird
-            lutris
             obs-studio
             ncmpcpp
             fastfetch
