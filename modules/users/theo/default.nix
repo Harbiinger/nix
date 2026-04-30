@@ -11,6 +11,7 @@
       den.aspects.nvchad
       den.aspects.hyprland
       den.aspects.p137-storage
+      den.aspects.firefox
     ];
 
     nixos =
