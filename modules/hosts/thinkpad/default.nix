@@ -11,7 +11,9 @@
       den.aspects.pipewire
       den.aspects.i18n
       den.aspects.jellyfin
+      den.aspects.nextcloud
     ];
+# den.aspects.immich
 
     nixos =
       { pkgs, ... }:
@@ -37,6 +39,13 @@
 
         # Enable networking
         networking.networkmanager.enable = true;
+        networking.firewall = {
+          enable = true;
+          allowedTCPPorts = [
+            80    # http
+            443   # tls
+          ];
+        };
 
         # Set your time zone.
         time.timeZone = "Europe/Brussels";
@@ -117,6 +126,7 @@
           networkmanager
           python3
           cron
+          eid-mw
         ];
 
       };
