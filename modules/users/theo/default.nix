@@ -36,7 +36,6 @@
           packages = with pkgs; [
             discord
             teamspeak6-client
-            stoat-desktop
             freetube
             blockbench
             heroic
@@ -44,9 +43,13 @@
             burpsuite
             unrar
             obsidian
+            # cisco-packet-tracer_9
+            claude-code
           ];
           
         };
+
+        services.pcscd.enable = true;
 
       };
 
@@ -86,6 +89,7 @@
             grim
             slurp
             wl-clipboard
+            wl-mirror
             dunst
             pavucontrol
             ungoogled-chromium
@@ -137,7 +141,7 @@
             ffmpeg
             zip
             zed-editor
-            nodejs_25
+            nodejs
             papirus-icon-theme
             vial
             go
@@ -159,6 +163,7 @@
             (retroarch.withCores (cores: with libretro; [
               bsnes
             ]))
+            openvpn3
           ];
         };
       };

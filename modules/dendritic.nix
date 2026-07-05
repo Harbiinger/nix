@@ -30,6 +30,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    catodoro.url = "github:harbiinger/catodoro";
+
   };
 
 }

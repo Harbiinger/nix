@@ -13,6 +13,7 @@
     includes = with den.aspects; [
       caddy
       teamspeak
+      catodoro
     ];
      
     nixos = { pkgs, ... }: {
