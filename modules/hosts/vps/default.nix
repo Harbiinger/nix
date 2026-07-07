@@ -14,6 +14,7 @@
       caddy
       teamspeak
       catodoro
+      dunlocked
     ];
      
     nixos = { pkgs, ... }: {

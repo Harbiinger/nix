@@ -32,6 +32,8 @@
 
     catodoro.url = "github:harbiinger/catodoro";
 
+    dunlocked.url = "git+ssh://git@github.com/ICSProductions/Dunlocked-Django.git?ref=main";
+
   };
 
 }

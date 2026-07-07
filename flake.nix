@@ -10,6 +10,7 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    dunlocked.url = "git+ssh://git@github.com/ICSProductions/Dunlocked-Django.git?ref=main";
     flake-file.url = "github:vic/flake-file";
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
