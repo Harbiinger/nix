@@ -77,11 +77,11 @@
         "uv2nix": "uv2nix"
       },
       "locked": {
-        "lastModified": 1783438344,
-        "narHash": "sha256-fcjsSfiytbbvs7E+aEmaLTwFPgfmk4upzPpmRV4TngI=",
+        "lastModified": 1783505295,
+        "narHash": "sha256-YphTKmEV1rJg/qnI7d8gKuMBNidXbpwpZNa/bFxGTYA=",
         "ref": "main",
-        "rev": "25f58f081fb97e19c14038e9c42f3a112b7250d7",
-        "revCount": 32,
+        "rev": "e7e05c81e42f2494a97b1e81d6e4da2f2c513daa",
+        "revCount": 37,
         "type": "git",
         "url": "ssh://git@github.com/ICSProductions/Dunlocked-Django.git"
       },
