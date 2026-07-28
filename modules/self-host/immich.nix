@@ -9,7 +9,7 @@
         host = "localhost";
         port = 2283;
         user = "immich";
-        database.port = 6543;
+        database.port = 5432;
       };
 
       services.caddy = {

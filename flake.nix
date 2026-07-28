@@ -21,6 +21,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     import-tree.url = "github:vic/import-tree";
+    magma-block.url = "git+ssh://git@github.com/Toyo-Pumps-Europe/magma-block.git?ref=nixification";
     nix-colors.url = "github:misterio77/nix-colors";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nvchad4nix = {

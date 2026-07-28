@@ -44,6 +44,7 @@
           allowedTCPPorts = [
             80    # http
             443   # tls
+            4243  # reticulum
           ];
         };
 

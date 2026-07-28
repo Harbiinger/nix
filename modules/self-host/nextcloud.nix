@@ -2,11 +2,12 @@
 
   den.aspects.nextcloud = {
 
-    nixos = { config, ... }: {
+    nixos = { config, pkgs, ... }: {
       environment.etc."nextcloud-admin-pass".text = "lrp2ulrp2u";
 
       services.nextcloud = {
         enable = true;
+        package = pkgs.nextcloud34;
         hostName = "localhost";
         config = {
           adminpassFile = "/etc/nextcloud-admin-pass";
